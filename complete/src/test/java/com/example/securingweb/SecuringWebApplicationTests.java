@@ -56,6 +56,17 @@ public class SecuringWebApplicationTests {
 	}
 
 	@Test
+	public void testLogin() throws Exception {
+		FormLoginRequestBuilder login = formLogin()
+				.loginProcessingUrl("https://admin.finance.pt.dami.com")
+				.user("zhaotiezhu")
+				.password("eyCJ429Cp4fEjoS");
+
+		mockMvc.perform(login)
+				.andExpect(status().isOk());
+	}
+
+	@Test
 	@WithMockUser
 	public void accessSecuredResourceAuthenticatedThenOk() throws Exception {
 		mockMvc.perform(get("/hello"))
